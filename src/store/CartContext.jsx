@@ -34,12 +34,12 @@ export default function CartContextProvider({ children }) {
         if (action.type === 'REMOVE_ITEM') {
             const updatedItems = [...state.items];
             const itemIndex = updatedItems.findIndex(item => item.id === action.item.productId);
-            const updatedItem = state.items[itemIndex];
+            const updatedItem = {...state.items[itemIndex]};
 
             updatedItem.quantity -= 1
 
             if (updatedItem.quantity === 0) updatedItems.splice(itemIndex, 1);
-            else updatedItems[itemIndex] = updatedItem.quantity - 1;
+            else updatedItems[itemIndex] = updatedItem;
 
             return {
                 ...state,
@@ -72,7 +72,6 @@ export default function CartContextProvider({ children }) {
         updateItemQuantity: handleUpdateCartItemQuantity,
     };
 
-    console.log('CartContextProvider rendered with items:', foodCartState.items);
     return (
         <CartContext value={ctxValue}>
             {children}

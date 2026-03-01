@@ -1,13 +1,18 @@
-import Header from './components/Header';
-import Meals from './components/Meals';
-import CartContextProvider from './store/CartContext';
+import Header from "./components/Header";
+import Meals from "./components/Meals";
+import Cart from "./components/Cart";
+import CartContextProvider from "./store/CartContext";
+import ModalContextProvider from "./store/ModalContext";
 
 function App() {
   return (
-    <CartContextProvider>
-      <Header title={ "Zwigato App" }/>
-      <Meals />
-    </CartContextProvider>
+    <ModalContextProvider>
+      <CartContextProvider>
+        <Header title={"Zwigato App"} />
+        <Meals />
+        <Cart />
+      </CartContextProvider>
+    </ModalContextProvider>
   );
 }
 
